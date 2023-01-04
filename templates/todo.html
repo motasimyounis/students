@@ -1,0 +1,71 @@
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+ 
+{% if not todo_done %}   
+
+    <table class="table table-striped table-bordered table-hover table-dark">
+        
+       
+        
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Status</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for to in todo  %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{to.Title}}</td>
+                <td>
+                    <a href="{% url 'update-todo' to.id %}">
+                        
+                        <div class="form-check">
+                            {% if to.Status == True  %}
+                            <input class="form-check-input" type="checkbox" value="" checked id="1">
+                            <label class="form-check-label text-light" for="flexCheckDefault">
+                                Completed
+                            </label>
+                            {% else %}
+                            <input class="form-check-input" type="checkbox" name="the_checkbox" value="0">
+                            <label class="form-check-label text-light" for="flexCheckDefault">
+                                Incompleted
+                            </label>
+
+
+                            {% endif %}
+                        </div>
+                    </a>
+                </td>
+                <td><a href="{% url 'delete-todos' to.id %}"><i class="fa fa-trash fa-2x"></i></a></td>
+            </tr>
+             {% endfor %}    
+        </tbody>
+    </table>
+{% else %}
+<h4>All tasks have been done!! create to add more</h4>
+{% endif %} 
+</div><br><br>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Create Todo</legend>
+        </fieldset>
+        <div class="form-group">
+            {{form|crispy}}
+            <button href="" class="btn btn-outline-info" type="submit">
+                Create
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

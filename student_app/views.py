@@ -114,7 +114,7 @@ def todo(request):
                 
             to = Todo(user=request.user,Title=request.POST['Title'],Status=finished)
             to.save()
-            messages.success(request,f"todo Addes from successfully!")
+            messages.success(request,f"todo Addes from {request.user.username} successfully!")
             return redirect("todo")
         
     

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-kmtghdo_rrr%koyb_p^it7_b(jrifp&uy4o1+(e)*$(prwc7d=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'student_app',
     'crispy_forms',
 ]
-
-# AUTH_USER_MODEL = "student_app.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,16 +77,10 @@ WSGI_APPLICATION = 'student.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-        
-        
-        #'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME':'hh',
-        # 'USER':'postgres',
-        # 'PASSWORD':'mot',
-        # 'HOST':'localhost'
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -128,8 +120,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'student/static')
+]
+
 
 
 # Default primary key field type

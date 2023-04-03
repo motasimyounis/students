@@ -1,6 +1,6 @@
 # students
 
-students website built with Django.
+Students Website built with Django.
 
 <h2>Project Summary</h2>
 The website displays student services. Students can register their own accounts, log in, use and shorten the way to search for them through the site, manage their own accounts, add and complete tasks, solve assignments, and communicate with teachers.
